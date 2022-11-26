@@ -1,8 +1,10 @@
-import { Button, Input } from '@mui/material'
+import { Box, TextField } from '@mui/material'
 import axios from 'axios'
-import { useEffect, useRef, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import NewsCard from '../../components/Card/NewsCard'
-import { StyledNews, StyledNewsHeader } from './News.styles'
+import { NewsArticle, useNewsContext } from '../../context/newsContext'
+import { StyledNews, StyledNewsPage } from './News.styles'
 
 const api = 'https://newsapi.org/v2/everything?'
 const from = '2022-11-24'
@@ -12,55 +14,68 @@ const url = (query: string) =>
     import.meta.env.VITE_API_KEY
   }`
 
-interface Article {
-  title: string
-  urlToImage: string
-  author: string
-}
-
 const News = () => {
-  const [articles, setArticles] = useState<Article[]>([])
   const [query, setQuery] = useState('')
-  const inputRef = useRef<HTMLInputElement | null>(null)
+  const { news, setNews } = useNewsContext()
 
-  const onSearch = async () => {
+  const navigate = useNavigate()
+
+  const fetchNewsArticles = async () => {
+    const res = await axios.get(url(query))
+
+    const news: NewsArticle[] = res?.data.articles.map(
+      (el: unknown) => el as NewsArticle
+    )
+    setNews(news)
+  }
+
+  const onSearch = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
     if (query === '') return
 
-    const res = await axios.get(url(query))
+    fetchNewsArticles()
 
-    const news: Article[] = res?.data.articles.map(
-      (el: unknown) => el as Article
-    )
-    setArticles(news)
+    localStorage.setItem('query', query)
   }
 
   useEffect(() => {
-    onSearch()
+    const cachedQuery = localStorage.getItem('query')
+    if (cachedQuery) {
+      setQuery(cachedQuery)
+    }
+    if (query) fetchNewsArticles()
   }, [])
 
   return (
-    <>
-      <StyledNewsHeader>
-        <Input
+    <StyledNewsPage>
+      <Box
+        component='form'
+        onSubmit={onSearch}
+        display='flex'
+        justifyContent='center'
+        noValidate
+        autoComplete='off'
+      >
+        <TextField
+          type='string'
           value={query}
-          ref={inputRef}
           onChange={(e) => setQuery(e.target.value)}
         />
-        <Button onClick={onSearch}>search</Button>
-      </StyledNewsHeader>
+      </Box>
       <StyledNews>
-        {articles.map(({ title, urlToImage }: Article, i) => {
+        {news.map(({ title, urlToImage }: NewsArticle, i) => {
           return (
             <NewsCard
               key={`article_${i}`}
               title={title}
               thumbnail={urlToImage}
+              onClick={() => navigate(`read-news:${i}`)}
             />
           )
         })}
       </StyledNews>
-    </>
+    </StyledNewsPage>
   )
 }
 

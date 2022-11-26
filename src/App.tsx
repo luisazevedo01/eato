@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import CssBaseline from '@mui/material/CssBaseline'
 import News from './views/News/News'
 import ReadNew from './views/ReadNew/ReadNew'
+import { NewsArticle, NewsContext } from './context/newsContext'
+import { useState } from 'react'
 
 const darkTheme = createTheme({
   palette: {
@@ -13,20 +15,21 @@ const darkTheme = createTheme({
 })
 
 function App() {
+  const [news, setNews] = useState<NewsArticle[]>([])
+
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
 
-      <BrowserRouter>
-        <Routes>
+      <NewsContext.Provider value={{ news, setNews }}>
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<News />} />
 
-          <Route path='/' element={<News />} />
-
-          <Route path='/read_new' element={<ReadNew/>} />
-
-        </Routes>
-      </BrowserRouter>
-
+            <Route path='/read-news:id' element={<ReadNew />} />
+          </Routes>
+        </BrowserRouter>
+      </NewsContext.Provider>
     </ThemeProvider>
   )
 }

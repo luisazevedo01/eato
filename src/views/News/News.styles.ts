@@ -7,12 +7,6 @@ export const StyledNews = styled.div`
   margin-top: 34px;
 `
 
-export const StyledNewsHeader = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 16px;
-
-  Button {
-    margin: 0 16px;
-  }
+export const StyledNewsPage = styled.div`
+  margin: 4rem;
 `

@@ -10,14 +10,9 @@
   ],
   "overrides": [
     {
-      "files": [
-        "*.ts",
-        "*.tsx"
-      ],
+      "files": ["*.ts", "*.tsx"],
       "parserOptions": {
-        "project": [
-          "./tsconfig.json"
-        ]
+        "project": ["./tsconfig.json"]
       }
     }
   ],
@@ -26,24 +21,15 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint"
-  ],
+  "plugins": ["react", "@typescript-eslint"],
   "rules": {
     // suppress errors for missing 'import React' in files
     "react/react-in-jsx-scope": "off",
+    "no-empty-function": "off",
+    "@typescript-eslint/no-empty-function": "off",
     "semi": "off",
-    "no-await-in-loop": [
-      "error"
-    ],
-    "object-curly-spacing": [
-      "warn",
-      "always"
-    ],
-    "quotes": [
-      "warn",
-      "single"
-    ]
+    "no-await-in-loop": ["error"],
+    "object-curly-spacing": ["warn", "always"],
+    "quotes": ["warn", "single"]
   }
 }

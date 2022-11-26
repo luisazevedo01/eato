@@ -1,4 +1,3 @@
-import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardMedia from '@mui/material/CardMedia'
 import Typography from '@mui/material/Typography'
@@ -8,6 +7,7 @@ import { StyledCard } from './NewsCard.styles'
 interface NewsCardProps {
   title: string
   thumbnail: string
+  onClick: () => void
 }
 
 /*
@@ -18,9 +18,10 @@ interface NewsCardProps {
 
 */
 
-const NewsCard = ({ title, thumbnail }: NewsCardProps) => {
+const NewsCard = ({ title, thumbnail, onClick }: NewsCardProps) => {
+
   return (
-    <StyledCard>
+    <StyledCard onClick={onClick}>
       <CardActionArea>
         <CardMedia
           component='img'
