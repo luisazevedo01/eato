@@ -5,10 +5,12 @@ export const StyledNews = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 34px;
+  overflow: scroll;
+  height: 100%;
 `
 
 export const StyledNewsPage = styled.div`
-  margin: 4rem;
-  height: 100%;
-  overflow: scroll;
+  height: 100vh;
+  padding-top: 3rem;
+  overflow: hidden;
 `

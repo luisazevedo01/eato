@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material'
+import { Box, createTheme, Grid, Paper } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 
 import { Route, Routes } from 'react-router-dom'
@@ -20,14 +20,24 @@ function App() {
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
+      <Grid display='flex'>
+        <Paper sx={{ width: '300px', height: '100vh' }}>
+          <Box display='flex' flexDirection='column'>
+            <h1>lorem</h1>
+            <h1>lorem</h1>
+          </Box>
+        </Paper>
 
         <NewsContext.Provider value={{ news, setNews }}>
-          <Routes>
-            <Route path='/' element={<News />} />
+          <Box width="100%">
+            <Routes>
+              <Route path='/' element={<News />} />
 
-            <Route path='/read-news:id' element={<ReadNew />} />
-          </Routes>
+              <Route path='/read-news:id' element={<ReadNew />} />
+            </Routes>
+          </Box>
         </NewsContext.Provider>
+      </Grid>
     </ThemeProvider>
   )
 }
