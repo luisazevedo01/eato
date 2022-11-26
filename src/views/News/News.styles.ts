@@ -9,4 +9,6 @@ export const StyledNews = styled.div`
 
 export const StyledNewsPage = styled.div`
   margin: 4rem;
+  height: 100%;
+  overflow: scroll;
 `

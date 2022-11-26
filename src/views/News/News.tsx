@@ -20,8 +20,8 @@ const News = () => {
 
   const navigate = useNavigate()
 
-  const fetchNewsArticles = async () => {
-    const res = await axios.get(url(query))
+  const fetchNewsArticles = async (newsQuery: string) => {
+    const res = await axios.get(url(newsQuery))
 
     const news: NewsArticle[] = res?.data.articles.map(
       (el: unknown) => el as NewsArticle
@@ -34,7 +34,7 @@ const News = () => {
 
     if (query === '') return
 
-    fetchNewsArticles()
+    fetchNewsArticles(query)
 
     localStorage.setItem('query', query)
   }
@@ -44,7 +44,7 @@ const News = () => {
     if (cachedQuery) {
       setQuery(cachedQuery)
     }
-    if (query) fetchNewsArticles()
+    fetchNewsArticles(cachedQuery ? cachedQuery : query)
   }, [])
 
   return (
