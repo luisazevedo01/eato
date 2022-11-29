@@ -1,4 +1,4 @@
-import { Box, createTheme, Grid, Paper } from '@mui/material'
+import { Box, createTheme, Grid } from '@mui/material'
 import { ThemeProvider } from '@mui/system'
 
 import { Route, Routes } from 'react-router-dom'
@@ -7,6 +7,8 @@ import News from './views/News/News'
 import ReadNew from './views/ReadNew/ReadNew'
 import { NewsArticle, NewsContext } from './context/newsContext'
 import { useState } from 'react'
+import Dashboard from './views/Dashboard/Dashboard'
+import Sidebar from './components/Sidebar/Sidebar'
 
 const darkTheme = createTheme({
   palette: {
@@ -21,19 +23,18 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Grid display='flex'>
-        <Paper sx={{ width: '300px', height: '100vh' }}>
-          <Box display='flex' flexDirection='column'>
-            <h1>lorem</h1>
-            <h1>lorem</h1>
-          </Box>
-        </Paper>
+        <Sidebar/>
 
         <NewsContext.Provider value={{ news, setNews }}>
           <Box width="100%">
             <Routes>
-              <Route path='/' element={<News />} />
+
+              <Route path='/' element={<Dashboard/>} />
+
+              <Route path='/news' element={<News />} />
 
               <Route path='/read-news:id' element={<ReadNew />} />
+
             </Routes>
           </Box>
         </NewsContext.Provider>

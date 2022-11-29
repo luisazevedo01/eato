@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Grid, Typography } from '@mui/material'
 import { useNavigate, useParams } from 'react-router-dom'
 import { NewsArticle, useNewsContext } from '../../context/newsContext'
 import {
