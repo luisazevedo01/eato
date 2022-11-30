@@ -9,6 +9,7 @@ import { NewsArticle, NewsContext } from './context/newsContext'
 import { useState } from 'react'
 import Dashboard from './views/Dashboard/Dashboard'
 import Sidebar from './components/Sidebar/Sidebar'
+import { RoutesPath } from './RoutesPath'
 
 const darkTheme = createTheme({
   palette: {
@@ -21,24 +22,33 @@ function App() {
 
   return (
     <ThemeProvider theme={darkTheme}>
+
       <CssBaseline />
+
       <Grid display='flex'>
+
         <Sidebar/>
 
         <NewsContext.Provider value={{ news, setNews }}>
+
           <Box width="100%">
+
             <Routes>
 
-              <Route path='/' element={<Dashboard/>} />
+              <Route path={RoutesPath.DASHBOARD} element={<Dashboard/>} />
 
-              <Route path='/news' element={<News />} />
+              <Route path={RoutesPath.NEWS} element={<News />} />
 
-              <Route path='/read-news:id' element={<ReadNew />} />
+              <Route path={RoutesPath.READ_NEW} element={<ReadNew />} />
 
             </Routes>
+
           </Box>
+
         </NewsContext.Provider>
+
       </Grid>
+
     </ThemeProvider>
   )
 }

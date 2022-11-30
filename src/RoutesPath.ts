@@ -1,6 +1,6 @@
-export enum Routes {
+export enum RoutesPath {
   DASHBOARD = '/',
   NEWS = '/news',
-  BLOG = '/blog',
+  READ_NEW = '/read-new',
   PORTFOLIO = '/portfolio'
 }

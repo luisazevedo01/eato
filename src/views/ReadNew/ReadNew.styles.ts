@@ -20,7 +20,7 @@ export const StyledReadNew = styled(Box)`
 `
 
 export const StyledNewContainer = styled(Box)`
-  padding: 0 5rem 5rem 5rem ;
+  padding: 0 5rem 5rem 5rem;
   overflow: scroll;
   height: 100%;
 `

@@ -70,7 +70,7 @@ const News = () => {
               key={`article_${i}`}
               title={title}
               thumbnail={urlToImage}
-              onClick={() => navigate(`read-news:${i}`)}
+              onClick={() => navigate(`read-news`, {state: i, replace: true})}
             />
           )
         })}

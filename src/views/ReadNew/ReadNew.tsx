@@ -16,6 +16,7 @@ const ReadNew = () => {
 
   const targetedNew: NewsArticle = news[target]
 
+  console.log('ReadNew')
   return (
     <StyledReadNew>
       <StyledArrowBack onClick={() => navigate(-1)} fontSize='large' />

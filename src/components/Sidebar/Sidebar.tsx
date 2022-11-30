@@ -10,7 +10,7 @@ import {
 import { Box } from '@mui/system'
 import NewspaperIcon from '@mui/icons-material/Newspaper'
 import { useNavigate } from 'react-router-dom'
-import { Routes } from '../../Routes'
+import { RoutesPath } from '../../RoutesPath'
 
 const Sidebar = () => {
   const navigate = useNavigate()
@@ -30,7 +30,7 @@ const Sidebar = () => {
         >
           <ListItemButton
             sx={{ margin: 2 }}
-            onClick={() => navigate(Routes.DASHBOARD)}
+            onClick={() => navigate(RoutesPath.DASHBOARD)}
           >
             <ListItemIcon>
               <Dashboard />
@@ -40,7 +40,7 @@ const Sidebar = () => {
 
           <ListItemButton
             sx={{ margin: 2 }}
-            onClick={() => navigate(Routes.NEWS)}>
+            onClick={() => navigate(RoutesPath.NEWS)}>
             <ListItemIcon>
               <NewspaperIcon />
             </ListItemIcon>
