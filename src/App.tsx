@@ -39,7 +39,7 @@ function App() {
 
               <Route path={RoutesPath.NEWS} element={<News />} />
 
-              <Route path={RoutesPath.READ_NEW} element={<ReadNew />} />
+              <Route path={RoutesPath.DYNAMIC_READ_NEW} element={<ReadNew />} />
 
             </Routes>
 

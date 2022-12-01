@@ -11,12 +11,10 @@ const ReadNew = () => {
   const { news } = useNewsContext()
   const navigate = useNavigate()
   const params = useParams()
+  const newId = Number(params.id) 
 
-  const target = Number(params.id?.split('')[1])
+  const targetedNew: NewsArticle = news[newId]
 
-  const targetedNew: NewsArticle = news[target]
-
-  console.log('ReadNew')
   return (
     <StyledReadNew>
       <StyledArrowBack onClick={() => navigate(-1)} fontSize='large' />

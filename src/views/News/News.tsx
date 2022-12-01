@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import NewsCard from '../../components/Card/NewsCard'
 import { NewsArticle, useNewsContext } from '../../context/newsContext'
+import { RoutesPath } from '../../RoutesPath'
 import { StyledNews, StyledNewsPage } from './News.styles'
 
 const api = 'https://newsapi.org/v2/everything?'
@@ -70,7 +71,7 @@ const News = () => {
               key={`article_${i}`}
               title={title}
               thumbnail={urlToImage}
-              onClick={() => navigate(`read-news`, {state: i, replace: true})}
+              onClick={() => navigate(RoutesPath.READ_NEW + i)}
             />
           )
         })}
